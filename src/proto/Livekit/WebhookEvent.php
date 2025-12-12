@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebhookEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *
@@ -62,7 +62,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      */
     protected $created_at = 0;
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
+     * @deprecated
      */
     protected $num_dropped = 0;
 
@@ -73,7 +74,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $event
-     *           one of room_started, room_finished, participant_joined, participant_left,
+     *           one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      *           track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      *           ingress_started, ingress_ended
      *     @type \Livekit\Room $room
@@ -98,7 +99,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *
@@ -111,7 +112,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *
@@ -356,21 +357,25 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getNumDropped()
     {
+        @trigger_error('num_dropped is deprecated.', E_USER_DEPRECATED);
         return $this->num_dropped;
     }
 
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setNumDropped($var)
     {
+        @trigger_error('num_dropped is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->num_dropped = $var;
 

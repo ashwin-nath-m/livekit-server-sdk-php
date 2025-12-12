@@ -48,11 +48,24 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
-     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     * metadata associated with the publishing participant
      *
-     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     */
+    protected $participant_metadata = '';
+    /**
+     * [depreacted ] whether to pass through the incoming media without transcoding, only compatible with some input types. Use `enable_transcoding` instead.
+     *
+     * Generated from protobuf field <code>bool bypass_transcoding = 8 [deprecated = true];</code>
+     * @deprecated
      */
     protected $bypass_transcoding = false;
+    /**
+     * Whether to transcode the ingested media. Only WHIP supports disabling transcoding currently. WHIP will default to transcoding disabled. Replaces `bypass_transcoding. 
+     *
+     * Generated from protobuf field <code>optional bool enable_transcoding = 11;</code>
+     */
+    protected $enable_transcoding = null;
     /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
@@ -61,6 +74,12 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.IngressVideoOptions video = 7;</code>
      */
     protected $video = null;
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     */
+    protected $enabled = null;
 
     /**
      * Constructor.
@@ -79,10 +98,16 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      *           publish as participant
      *     @type string $participant_name
      *           name of publishing participant (used for display only)
+     *     @type string $participant_metadata
+     *           metadata associated with the publishing participant
      *     @type bool $bypass_transcoding
-     *           whether to pass through the incoming media without transcoding, only compatible with some input types
+     *           [depreacted ] whether to pass through the incoming media without transcoding, only compatible with some input types. Use `enable_transcoding` instead.
+     *     @type bool $enable_transcoding
+     *           Whether to transcode the ingested media. Only WHIP supports disabling transcoding currently. WHIP will default to transcoding disabled. Replaces `bypass_transcoding. 
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
+     *     @type bool $enabled
+     *           The default value is true and when set to false, the new connection attempts will be rejected
      * }
      */
     public function __construct($data = NULL) {
@@ -243,27 +268,93 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     * metadata associated with the publishing participant
      *
-     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     * @return string
+     */
+    public function getParticipantMetadata()
+    {
+        return $this->participant_metadata;
+    }
+
+    /**
+     * metadata associated with the publishing participant
+     *
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * [depreacted ] whether to pass through the incoming media without transcoding, only compatible with some input types. Use `enable_transcoding` instead.
+     *
+     * Generated from protobuf field <code>bool bypass_transcoding = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getBypassTranscoding()
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         return $this->bypass_transcoding;
     }
 
     /**
-     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     * [depreacted ] whether to pass through the incoming media without transcoding, only compatible with some input types. Use `enable_transcoding` instead.
      *
-     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>bool bypass_transcoding = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setBypassTranscoding($var)
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->bypass_transcoding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to transcode the ingested media. Only WHIP supports disabling transcoding currently. WHIP will default to transcoding disabled. Replaces `bypass_transcoding. 
+     *
+     * Generated from protobuf field <code>optional bool enable_transcoding = 11;</code>
+     * @return bool
+     */
+    public function getEnableTranscoding()
+    {
+        return isset($this->enable_transcoding) ? $this->enable_transcoding : false;
+    }
+
+    public function hasEnableTranscoding()
+    {
+        return isset($this->enable_transcoding);
+    }
+
+    public function clearEnableTranscoding()
+    {
+        unset($this->enable_transcoding);
+    }
+
+    /**
+     * Whether to transcode the ingested media. Only WHIP supports disabling transcoding currently. WHIP will default to transcoding disabled. Replaces `bypass_transcoding. 
+     *
+     * Generated from protobuf field <code>optional bool enable_transcoding = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_transcoding = $var;
 
         return $this;
     }
@@ -328,6 +419,42 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\IngressVideoOptions::class);
         $this->video = $var;
+
+        return $this;
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
 
         return $this;
     }

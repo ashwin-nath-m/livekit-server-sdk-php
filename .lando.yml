@@ -1,14 +1,15 @@
 name: livekit-server-sdk-php
-recipe: lamp
-config:
-  php: '8.1'
-  #xdebug: true
 env_file:
   - .env
 services:
-  database: disabled
   appserver:
+    api: 3
+    type: lando
+    services:
+      image: php:8.1-apache
+      command: docker-php-entrypoint apache2-foreground
     build_as_root:
+      - apt-get update && apt-get install -y jq
       - curl -sSL https://get.livekit.io/cli | bash
     overrides:
       environment:
@@ -34,23 +35,19 @@ tooling:
     cmd:
       - rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && kill -USR2 $(pgrep -o php-fpm) > /dev/null || /etc/init.d/apache2 reload
       - tput setaf 1 && echo "Xdebug Off" && tput sgr 0 && echo
-  livekit-cli:
+  lk:
     service: appserver
     cmd:
-      - livekit-cli
-  create-project:
-    service: appserver
-    cmd:
-      - livekit-cli project add --name php-sdk-https
+      - lk
   create-test-room:
     service: appserver
     cmd:
-      - livekit-cli create-room --name testRoomParticipants --project php-sdk-https
+      - lk room create testRoomParticipants
   delete-test-room:
     service: appserver
     cmd:
-      - livekit-cli delete-room --room testRoomParticipants --project php-sdk-https
+      - lk room delete testRoomParticipants
   start-test-users:
     service: appserver
     cmd:
-      - livekit-cli load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5 --project php-sdk-https
+      - lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5

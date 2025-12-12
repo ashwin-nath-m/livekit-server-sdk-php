@@ -22,6 +22,22 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      */
     protected $secret = '';
     /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     */
+    protected $session_token = '';
+    /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     */
+    protected $assume_role_arn = '';
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     */
+    protected $assume_role_external_id = '';
+    /**
      * Generated from protobuf field <code>string region = 3;</code>
      */
     protected $region = '';
@@ -45,6 +61,16 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tagging = 8;</code>
      */
     protected $tagging = '';
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     */
+    protected $content_disposition = '';
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     */
+    protected $proxy = null;
 
     /**
      * Constructor.
@@ -54,12 +80,20 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $access_key
      *     @type string $secret
+     *     @type string $session_token
+     *     @type string $assume_role_arn
+     *           ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *     @type string $assume_role_external_id
+     *           ExternalID to use when assuming role for upload
      *     @type string $region
      *     @type string $endpoint
      *     @type string $bucket
      *     @type bool $force_path_style
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *     @type string $tagging
+     *     @type string $content_disposition
+     *           Content-Disposition header
+     *     @type \Livekit\ProxyConfig $proxy
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +141,80 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->secret = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     * @return string
+     */
+    public function getSessionToken()
+    {
+        return $this->session_token;
+    }
+
+    /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * @return string
+     */
+    public function getAssumeRoleArn()
+    {
+        return $this->assume_role_arn;
+    }
+
+    /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssumeRoleArn($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assume_role_arn = $var;
+
+        return $this;
+    }
+
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     * @return string
+     */
+    public function getAssumeRoleExternalId()
+    {
+        return $this->assume_role_external_id;
+    }
+
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssumeRoleExternalId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assume_role_external_id = $var;
 
         return $this;
     }
@@ -239,6 +347,64 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tagging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     * @return string
+     */
+    public function getContentDisposition()
+    {
+        return $this->content_disposition;
+    }
+
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContentDisposition($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->content_disposition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     * @return \Livekit\ProxyConfig|null
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
+    }
+
+    public function hasProxy()
+    {
+        return isset($this->proxy);
+    }
+
+    public function clearProxy()
+    {
+        unset($this->proxy);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     * @param \Livekit\ProxyConfig $var
+     * @return $this
+     */
+    public function setProxy($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\ProxyConfig::class);
+        $this->proxy = $var;
 
         return $this;
     }

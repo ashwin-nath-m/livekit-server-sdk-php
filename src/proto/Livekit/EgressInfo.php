@@ -26,6 +26,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $room_name = '';
     /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     */
+    protected $source_type = 0;
+    /**
      * Generated from protobuf field <code>.livekit.EgressStatus status = 3;</code>
      */
     protected $status = 0;
@@ -42,9 +46,17 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $updated_at = 0;
     /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     */
+    protected $details = '';
+    /**
      * Generated from protobuf field <code>string error = 9;</code>
      */
     protected $error = '';
+    /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     */
+    protected $error_code = 0;
     /**
      * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
      */
@@ -61,6 +73,16 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
      */
     private $image_results;
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     */
+    protected $manifest_location = '';
+    /**
+     * next ID: 27
+     *
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
+     */
+    protected $backup_storage_used = false;
     protected $request;
     protected $result;
 
@@ -73,11 +95,14 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type string $egress_id
      *     @type string $room_id
      *     @type string $room_name
+     *     @type int $source_type
      *     @type int $status
      *     @type int|string $started_at
      *     @type int|string $ended_at
      *     @type int|string $updated_at
+     *     @type string $details
      *     @type string $error
+     *     @type int $error_code
      *     @type \Livekit\RoomCompositeEgressRequest $room_composite
      *     @type \Livekit\WebEgressRequest $web
      *     @type \Livekit\ParticipantEgressRequest $participant
@@ -90,6 +115,9 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $file_results
      *     @type \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $segment_results
      *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
+     *     @type string $manifest_location
+     *     @type bool $backup_storage_used
+     *           next ID: 27
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +187,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->room_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     * @return int
+     */
+    public function getSourceType()
+    {
+        return $this->source_type;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\EgressSourceType::class);
+        $this->source_type = $var;
 
         return $this;
     }
@@ -252,6 +302,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDetails($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->details = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>string error = 9;</code>
      * @return string
      */
@@ -269,6 +341,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     * @return int
+     */
+    public function getErrorCode()
+    {
+        return $this->error_code;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setErrorCode($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->error_code = $var;
 
         return $this;
     }
@@ -588,6 +682,54 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\ImagesInfo::class);
         $this->image_results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     * @return string
+     */
+    public function getManifestLocation()
+    {
+        return $this->manifest_location;
+    }
+
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setManifestLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->manifest_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * next ID: 27
+     *
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
+     * @return bool
+     */
+    public function getBackupStorageUsed()
+    {
+        return $this->backup_storage_used;
+    }
+
+    /**
+     * next ID: 27
+     *
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBackupStorageUsed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->backup_storage_used = $var;
 
         return $this;
     }

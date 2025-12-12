@@ -20,11 +20,23 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string room_preset = 12;</code>
+     */
+    protected $room_preset = '';
+    /**
      * number of seconds to keep the room open if no one joins
      *
      * Generated from protobuf field <code>uint32 empty_timeout = 2;</code>
      */
     protected $empty_timeout = 0;
+    /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     */
+    protected $departure_timeout = 0;
     /**
      * limit number of participants that can be in a room
      *
@@ -44,7 +56,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $metadata = '';
     /**
-     * egress
+     * auto-egress configurations
      *
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
      */
@@ -60,12 +72,24 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $max_playout_delay = 0;
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
      */
     protected $sync_streams = false;
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     */
+    protected $replay_enabled = false;
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 14;</code>
+     */
+    private $agents;
 
     /**
      * Constructor.
@@ -75,8 +99,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           name of the room
+     *     @type string $room_preset
+     *           configuration to use for this room parameters. Setting parameters below override the config defaults.
      *     @type int $empty_timeout
      *           number of seconds to keep the room open if no one joins
+     *     @type int $departure_timeout
+     *           number of seconds to keep the room open after everyone leaves
      *     @type int $max_participants
      *           limit number of participants that can be in a room
      *     @type string $node_id
@@ -84,13 +112,17 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *     @type string $metadata
      *           metadata of room
      *     @type \Livekit\RoomEgress $egress
-     *           egress
+     *           auto-egress configurations
      *     @type int $min_playout_delay
      *           playout delay of subscriber
      *     @type int $max_playout_delay
      *     @type bool $sync_streams
-     *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      *           so not recommended for rooms with frequent subscription changes
+     *     @type bool $replay_enabled
+     *           replay
+     *     @type \Livekit\RoomAgentDispatch[]|\Google\Protobuf\Internal\RepeatedField $agents
+     *           Define agents that should be dispatched to this room
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +157,32 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string room_preset = 12;</code>
+     * @return string
+     */
+    public function getRoomPreset()
+    {
+        return $this->room_preset;
+    }
+
+    /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string room_preset = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoomPreset($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->room_preset = $var;
+
+        return $this;
+    }
+
+    /**
      * number of seconds to keep the room open if no one joins
      *
      * Generated from protobuf field <code>uint32 empty_timeout = 2;</code>
@@ -146,6 +204,32 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->empty_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     * @return int
+     */
+    public function getDepartureTimeout()
+    {
+        return $this->departure_timeout;
+    }
+
+    /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDepartureTimeout($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->departure_timeout = $var;
 
         return $this;
     }
@@ -229,7 +313,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * egress
+     * auto-egress configurations
      *
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
      * @return \Livekit\RoomEgress|null
@@ -250,7 +334,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * egress
+     * auto-egress configurations
      *
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
      * @param \Livekit\RoomEgress $var
@@ -313,7 +397,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
@@ -325,7 +409,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
@@ -336,6 +420,58 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->sync_streams = $var;
+
+        return $this;
+    }
+
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     * @return bool
+     */
+    public function getReplayEnabled()
+    {
+        return $this->replay_enabled;
+    }
+
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReplayEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->replay_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAgents()
+    {
+        return $this->agents;
+    }
+
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 14;</code>
+     * @param \Livekit\RoomAgentDispatch[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAgents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\RoomAgentDispatch::class);
+        $this->agents = $arr;
 
         return $this;
     }

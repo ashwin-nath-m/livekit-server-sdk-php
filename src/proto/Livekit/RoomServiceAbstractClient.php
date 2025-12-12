@@ -331,6 +331,75 @@ abstract class RoomServiceAbstractClient
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function ForwardParticipant(array $ctx, \Livekit\ForwardParticipantRequest $in): \Livekit\ForwardParticipantResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'RoomService');
+        $ctx = Context::withMethodName($ctx, 'ForwardParticipant');
+
+        $out = new \Livekit\ForwardParticipantResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.RoomService/ForwardParticipant';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.RoomService/ForwardParticipant';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function MoveParticipant(array $ctx, \Livekit\MoveParticipantRequest $in): \Livekit\MoveParticipantResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'RoomService');
+        $ctx = Context::withMethodName($ctx, 'MoveParticipant');
+
+        $out = new \Livekit\MoveParticipantResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.RoomService/MoveParticipant';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.RoomService/MoveParticipant';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function PerformRpc(array $ctx, \Livekit\PerformRpcRequest $in): \Livekit\PerformRpcResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'RoomService');
+        $ctx = Context::withMethodName($ctx, 'PerformRpc');
+
+        $out = new \Livekit\PerformRpcResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.RoomService/PerformRpc';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.RoomService/PerformRpc';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
      * Common code to make a request to the remote twirp service.
      */
     abstract protected function doRequest(array $ctx, string $url, Message $in, Message $out): void;

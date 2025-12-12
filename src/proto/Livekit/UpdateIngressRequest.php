@@ -34,9 +34,18 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
-     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     */
+    protected $participant_metadata = '';
+    /**
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8 [deprecated = true];</code>
+     * @deprecated
      */
     protected $bypass_transcoding = null;
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 10;</code>
+     */
+    protected $enable_transcoding = null;
     /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
@@ -45,6 +54,12 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.IngressVideoOptions video = 7;</code>
      */
     protected $video = null;
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 11;</code>
+     */
+    protected $enabled = null;
 
     /**
      * Constructor.
@@ -57,9 +72,13 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      *     @type string $room_name
      *     @type string $participant_identity
      *     @type string $participant_name
+     *     @type string $participant_metadata
      *     @type bool $bypass_transcoding
+     *     @type bool $enable_transcoding
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
+     *     @type bool $enabled
+     *           The default value is true and when set to false, the new connection attempts will be rejected
      * }
      */
     public function __construct($data = NULL) {
@@ -178,33 +197,93 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * @return string
+     */
+    public function getParticipantMetadata()
+    {
+        return $this->participant_metadata;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getBypassTranscoding()
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         return isset($this->bypass_transcoding) ? $this->bypass_transcoding : false;
     }
 
     public function hasBypassTranscoding()
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         return isset($this->bypass_transcoding);
     }
 
     public function clearBypassTranscoding()
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         unset($this->bypass_transcoding);
     }
 
     /**
-     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setBypassTranscoding($var)
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->bypass_transcoding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 10;</code>
+     * @return bool
+     */
+    public function getEnableTranscoding()
+    {
+        return isset($this->enable_transcoding) ? $this->enable_transcoding : false;
+    }
+
+    public function hasEnableTranscoding()
+    {
+        return isset($this->enable_transcoding);
+    }
+
+    public function clearEnableTranscoding()
+    {
+        unset($this->enable_transcoding);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_transcoding = $var;
 
         return $this;
     }
@@ -269,6 +348,42 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\IngressVideoOptions::class);
         $this->video = $var;
+
+        return $this;
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 11;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
 
         return $this;
     }

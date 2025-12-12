@@ -26,6 +26,10 @@ class Room extends \Google\Protobuf\Internal\Message
      */
     protected $empty_timeout = 0;
     /**
+     * Generated from protobuf field <code>uint32 departure_timeout = 14;</code>
+     */
+    protected $departure_timeout = 0;
+    /**
      * Generated from protobuf field <code>uint32 max_participants = 4;</code>
      */
     protected $max_participants = 0;
@@ -33,6 +37,10 @@ class Room extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 creation_time = 5;</code>
      */
     protected $creation_time = 0;
+    /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     */
+    protected $creation_time_ms = 0;
     /**
      * Generated from protobuf field <code>string turn_password = 6;</code>
      */
@@ -57,6 +65,10 @@ class Room extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool active_recording = 10;</code>
      */
     protected $active_recording = false;
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     */
+    protected $version = null;
 
     /**
      * Constructor.
@@ -67,14 +79,17 @@ class Room extends \Google\Protobuf\Internal\Message
      *     @type string $sid
      *     @type string $name
      *     @type int $empty_timeout
+     *     @type int $departure_timeout
      *     @type int $max_participants
      *     @type int|string $creation_time
+     *     @type int|string $creation_time_ms
      *     @type string $turn_password
      *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
      *     @type string $metadata
      *     @type int $num_participants
      *     @type int $num_publishers
      *     @type bool $active_recording
+     *     @type \Livekit\TimedVersion $version
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +164,28 @@ class Room extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>uint32 departure_timeout = 14;</code>
+     * @return int
+     */
+    public function getDepartureTimeout()
+    {
+        return $this->departure_timeout;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 departure_timeout = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDepartureTimeout($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->departure_timeout = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>uint32 max_participants = 4;</code>
      * @return int
      */
@@ -188,6 +225,28 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->creation_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     * @return int|string
+     */
+    public function getCreationTimeMs()
+    {
+        return $this->creation_time_ms;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setCreationTimeMs($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->creation_time_ms = $var;
 
         return $this;
     }
@@ -320,6 +379,38 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->active_recording = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     * @return \Livekit\TimedVersion|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     * @param \Livekit\TimedVersion $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\TimedVersion::class);
+        $this->version = $var;
 
         return $this;
     }
